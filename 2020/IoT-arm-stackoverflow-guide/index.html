@@ -14,8 +14,8 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/images/15883514886903.jpg">
 <meta property="og:image" content="http://yoursite.com/images/15883558567931.jpg">
 <meta property="og:image" content="http://yoursite.com/images/15883559648985.jpg">
-<meta property="og:updated_time" content="2020-08-29T17:51:57.189Z">
+<meta property="og:updated_time" content="2020-08-29T17:51:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写给初学者的实战教程之ARM栈溢出">
 <meta name="twitter:description" content="首发于：https://www.anquanke.com/post/id/204326 本文面向入门IoT固件分析的安全研究员，以一款ARM路由器漏洞为例详细阐述了分析过程中思路判断，以便读者复现及对相关知识的查漏补缺。 假设读者：了解ARM指令集基础知识、了解栈溢出原理和基础利用方法、了解IDA、GDB基础使用方法，但缺少实战漏洞分析经验。 阅读本文后：  可以知道IoT固件仿真的基础方法及排错">
@@ -172,7 +172,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -182,7 +182,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -342,20 +342,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/IoT-arm-stackoverflow-guide/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qingxp9">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YYF's Blog">
     </span>
 
@@ -424,7 +424,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
@@ -474,7 +474,7 @@
 <p>##2.固件仿真<br>首先使用binwalk导出固件文件系统，并通过ELF文件的头信息判断架构，得知为32位小端ARM。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">binwalk -Me US_AC15V1.0BR_V15.03.1.16_multi_TD01.zip</span><br><span class="line">readelf -h bin/busybox</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/15883512910078.jpg" alt="-w675"></p>
 <p>使用对应的qemu程序（qemu-arm-static），配合chroot启动待分析的目标文件bin/httpd。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#安装qemu和arm的动态链接库</span><br><span class="line">sudo apt install qemu-user-static libc6-arm* libc6-dev-arm*</span><br><span class="line">cp $(which qemu-arm-static) .</span><br><span class="line"></span><br><span class="line">sudo chroot ./ ./qemu-arm-static ./bin/httpd</span><br></pre></td></tr></table></figure></p>
-<p>此时发现卡在了如下图的显示，同时检查80端口也并未开启。<br><img src="/images/15883514886903.jpg" alt=""></p>
+<p>此时发现卡在了如下图的显示，同时检查80端口也并未开启。<br><img src="/images/15883514886903.jpg" alt></p>
 <p>根据打印的信息“/bin/sh: can’t create /proc/sys/kernel/core_pattern: nonexistent directory”，创建相应目录<figure class="highlight plain"><figcaption><span>-p ./proc/sys/kernel```。同时在ida中通过Strings视图搜索“Welcome to”字符串，通过交叉引用找到程序执行的上下文。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">![](//images//15883515565859.jpg)</span><br><span class="line">可以看到有不同的分支方向，简单分析梳理一下分支的判断条件。在上图中的标号1处，执行check_network函数后会检测返回值（保存在R0中），小于等于零时将执行左侧分支。可以观察到会进行sleep并跳回loc_2CF84形成一个循环。</span><br><span class="line"></span><br><span class="line">可以猜测因为模拟环境某些元素的缺失导致了检测失败。此处我们对程序进行patch，将其中的比较的指令```MOV R3, R0```修改为```MOV R3, 1```，从而强制让程序进入右侧分支。</span><br><span class="line"></span><br><span class="line">借用rasm2工具翻译汇编指令到机器指令，通过IDA原始功能修改即可（展开Edit-Patch program-Change byte进行修改）。</span><br><span class="line">![](/images/15883517902317.jpg)</span><br><span class="line">![](/images/15883518542967.jpg)</span><br><span class="line"></span><br><span class="line">此时运行程序会发现还是会卡住，继续观察上下文代码段，发现在下图中的标号2处对ConnectCfm函数返回值也进行了判断。采取同样的套路进行patch，这里不再赘述。</span><br><span class="line">![](/images/15883519333237.jpg)</span><br><span class="line"></span><br><span class="line">修改完好保存patch文件（展开Edit-Patch program-Apply patches to input file），并再次运行程序。</span><br><span class="line">![](/images/15883519955744.jpg)</span><br><span class="line">![](/images/15883520549621.jpg)</span><br><span class="line"></span><br><span class="line">可以看到程序打印显示正在监听80端口，但ip地址不对。此时需要我们配置下网络，建立一个虚拟网桥br0，并再次运行程序。</span><br></pre></td></tr></table></figure></p>
 <p>sudo apt install uml-utilities bridge-utils<br>sudo brctl addbr br0<br>sudo brctl addif br0 eth0<br>sudo ifconfig br0 up<br>sudo dhclient br0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">![](/images/15883520811762.jpg)</span><br><span class="line">此时，IP为本机的真实地址，实验环境就配好了。</span><br><span class="line"></span><br><span class="line">##3.漏洞分析</span><br><span class="line">根据CVE的描述以及公开POC的信息，得知溢出点在R7WebsSecurityHandler函数中。ida可以直接按f5反编译arm架构的代码。</span><br><span class="line">![](/images/15883526225395.jpg)</span><br><span class="line">分析后得知，程序首先找到“password=”字符串的位置，通过sscanf函数解析从“=”号到“；”号中间的内容写入v35。这里没有对用户可控的输入进行过滤，从而有机会覆盖堆栈劫持程序流。</span><br><span class="line"></span><br><span class="line">为了让程序执行到此处，我们得满足前面的分支条件，见下图：</span><br><span class="line">![](/images/15883528087293.jpg)</span><br><span class="line">我们需要保证请求的url路径不会导致if语句为false，比如“/goform/xxx”就行。</span><br><span class="line"></span><br><span class="line">现在进行简单的溢出尝试，开启调试运行程序```sudo chroot ./ ./qemu-arm-static -g 1234 ./bin/httpd```，并另开终端用gdb连上远程调试。</span><br></pre></td></tr></table></figure></p>
 <p>gdb-multarch ./bin/httpd<br>target remote :1234<br>continue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用python requests库来构造HTTP请求，代码如下：</span><br></pre></td></tr></table></figure></p>
@@ -568,6 +568,10 @@
           
 
   
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
 
 
 
@@ -593,7 +597,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">qingxp9</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -822,6 +826,32 @@
 
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '8e6402e7290b6fe5827d',
+    clientSecret: '4f59edf97899977f5276e4ee2029fe98a5446551',
+    repo: 'qingxp9.github.io',
+    owner: 'qingxp9',
+    admin: ['qingxp9'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 

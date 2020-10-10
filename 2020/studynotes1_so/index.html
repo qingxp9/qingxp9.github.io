@@ -14,8 +14,8 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="YYF&#39;s Blog">
 <meta property="og:description" content="一个领域20%的核心内容能解决该领域80%的问题，而如何找到这20%的核心就需要该领域的专家来指点。 本系列文章是我对不熟悉领域的学习笔记，首要动机是通过对外分享的“负重感”给自己一些动力，其次以笔记的形式对知识内容进行结构化总结，便于大脑归档记忆。 本期学习的目标是来自lake2前不久分享的一篇文章《小步快跑，快速迭代：安全运营的器术法道》。  文章开始，作者指出在安全运营领域内存在一个广泛的误">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-08-29T17:50:49.134Z">
+<meta property="og:updated_time" content="2020-08-29T17:50:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yyf学习笔记（一）：安全运营">
 <meta name="twitter:description" content="一个领域20%的核心内容能解决该领域80%的问题，而如何找到这20%的核心就需要该领域的专家来指点。 本系列文章是我对不熟悉领域的学习笔记，首要动机是通过对外分享的“负重感”给自己一些动力，其次以笔记的形式对知识内容进行结构化总结，便于大脑归档记忆。 本期学习的目标是来自lake2前不久分享的一篇文章《小步快跑，快速迭代：安全运营的器术法道》。  文章开始，作者指出在安全运营领域内存在一个广泛的误">
@@ -167,7 +167,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -177,7 +177,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -337,20 +337,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/studynotes1_so/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qingxp9">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YYF's Blog">
     </span>
 
@@ -407,7 +407,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
 
                 
                 
@@ -537,6 +537,10 @@
           
 
   
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
 
 
 
@@ -571,7 +575,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">qingxp9</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -817,6 +821,32 @@
 
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '8e6402e7290b6fe5827d',
+    clientSecret: '4f59edf97899977f5276e4ee2029fe98a5446551',
+    repo: 'qingxp9.github.io',
+    owner: 'qingxp9',
+    admin: ['qingxp9'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
